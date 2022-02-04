@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</head>
+<body>
+    <figure class="container">
+        <blockquote class="blockquote">
+            <h3>Tutorial sugli Array</h3>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+            Analizza il codice per capire meglio gli esempi
+        </figcaption>
+    </figure>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col">                
+                <nav class="navbar navbar-dark" style="background-color: #e8eeed">
+                    <div class="container-fluid">
+                        <form action="container-fluid justify-content-start">
+                            <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'index.html'">Indice</button>
+                            <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'stringhe.html'">Stringhe</button>
+                            <button class="btn btn-outline-dark active" type="button" onclick="document.location.href = 'array.html'">Array</button>
+                            <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'condizioni.html'">Condizioni e LOOP</button>
+                            <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'funzioni.html'">Funzioni</button>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col">
+                <script>
+
+                    let citta = 'Como,Padova,Pavia,Udine,Treviso';
+                    let data = ['Milano', 'Torino', 'Roma', 'Venezia', 'Bologna']           //questo è un array
+
+                    document.write('Ecco il mio array: '+data+'<br>');
+                    document.write('Il terzo elemento è: '+data[2]+'<br>');
+                    document.write("L'array è composto da "+data.length+" elementi<br>");
+
+                    document.write("Scorro gli elemnti dell'array con un FOR <br>");
+                    for(let i = 0; i <data.length; i++) {
+                        document.write("Elemento "+(i+1)+" "+data[i]+"<br>");                        
+                    }
+                    
+                    document.write('Premessa la stringa "<i style="color: #421d73">'+citta+'</i>" vado a creare un nuovo array usando la virgola come separatore<br>');
+                    let nuovoArray = citta.split(',');
+                    document.write('Ecco il nuovo array: <i style="color: #421d73">'+nuovoArray+'</i><br>');
+                    let nuovaStringa = nuovoArray.join(',');
+                    document.write("Riconverto l'array in stringa "+'<i style="color: #421d73">'+nuovaStringa+"</i><br>")
+                    document.write('Aggiungo una città<br>');
+                    data.push('Firenze');
+                    document.write(data+'<br>');
+                    document.write("Rimuovo l'ultima città<br>");
+                    data.pop();
+                    document.write(data+'<br>');
+                    document.write("Aggiungo una città in testa<br>");
+                    data.unshift('Entracque');
+                    document.write(data+'<br>');
+                    document.write("Rimuovo la primca città<br>");
+                    data.shift();
+                    document.write(data+'<br>');
+
+                    document.write('<hr>');                    
+
+                </script>
+            </div>
+        </div>
+</body>
+</html>

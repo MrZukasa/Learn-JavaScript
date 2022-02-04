@@ -25,7 +25,10 @@
                     <div class="container-fluid">
                         <form action="container-fluid justify-content-start">
                             <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'index.html'">Indice</button>
-                            <button class="btn btn-outline-dark active" type="button" onclick="document.location.href = 'stringhe.html'">Stringhe</button>                            
+                            <button class="btn btn-outline-dark active" type="button" onclick="document.location.href = 'stringhe.html'">Stringhe</button>
+                            <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'array.html'">Array</button>
+                            <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'condizioni.html'">Condizioni e LOOP</button>
+                            <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'funzioni.html'">Funzioni</button>                        
                         </form>
                     </div>
                 </nav>
@@ -37,13 +40,11 @@
                 <script>
 
                     let test = 'Ecco la stringa ';
-                    test += 'e ci aggiungo anche qualcosa';                                                 //concatenazione in maniera rapida
-                    console.log(test);
+                    test += 'e ci aggiungo anche qualcosa';                                                 //concatenazione in maniera rapida                    
                     document.write('Vado a concatenare due stringhe ed il risultato sarà: <i style="color: #421d73">'+test+'</i><br>');
 
                     let numero = 33;
-                    test += 33;
-                    console.log(test);
+                    test += 33;                    
                     document.write('Vado a concatenare un numero "33" alla stringa di prima ed il risultato sarà: <i style="color: #421d73">'+test+'</i><br>');
 
                     document.write('Quindi posso concatenare tutto quello che voglio, in caso devo usare .toString() o Number(argomento)<br>')
@@ -54,6 +55,16 @@
                     let testo='Ecco del testo di prova';
                     let temp = `<h4>${testo} speriamo che funzioni </h4>`;
                     document.write(temp+'<br>');
+                    
+                    document.write('<hr>');
+
+                    let stringa = 'Per JavaScript ogni stringa è un oggetto';
+                    document.write('La nostra stringa "'+stringa+'" è lunga '+stringa.length+' caratteri<br>');
+                    document.write('Il quarto carattere è: '+stringa[4]+'<br>');
+                    document.write('La parola "ogni" è alla posizione '+stringa.indexOf('ogni')+'<br>');
+                    document.write('La stringa tagliata da "ogni" in avanti sarà: '+stringa.slice(stringa.indexOf('ogni'))+' <br>');
+                    document.write('Tutta la stringa in maiuscolo: <i style="color: #421d73">'+stringa.toUpperCase()+'</i><br>');
+                    document.write('Sostituisco la parola "ogni" con "qualsiasi": <i style="color: #421d73">'+stringa.replace('ogni','qualsiasi')+'</i><br>');                    
 
                 </script>
             </div>
