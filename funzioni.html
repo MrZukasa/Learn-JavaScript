@@ -39,6 +39,8 @@
                             <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'array.html'">Array</button>
                             <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'condizioni.html'">Condizioni e LOOP</button>
                             <button class="btn btn-outline-dark active" type="button" onclick="document.location.href = 'funzioni.html'">Funzioni</button>
+                            <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'eventi.html'">Eventi</button>
+                            <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'oggetti.html'">Oggetti</button>
                         </form>
                     </div>
                 </nav>
@@ -47,11 +49,18 @@
         <hr>
         <div class="row">
             <div class="col">
-                <button id="saluta">Salutami</button>
+                <button id="hello">Hello</button>
+                <br>
+                <input type="text" id="nome" name="nome" placeholder="Nome">
+                <button id="saluta">Saluta</button>
+                <h3 id="hey">Nessun saluto</h3>
+                <input type="text" id="numero" name="numero" placeholder="Numero">
+                <button id="cubo">Calcola il cubo</button>
+                <h4 id="result"></h4>
                 <script>
 
                     let nome = 'Luca';                                              //variabile globale perchè sta fuori da una funzione
-                    const myButton = document.querySelector('#saluta');              
+                    const myButton = document.querySelector('#hello');
 
                     myButton.onclick = function() {                                 //funzione anonima solitamente si usa nelle callback
                         alert('Hello!');
@@ -70,6 +79,31 @@
                     };
                     
                     hello('Sandro');
+                    
+                    let button = document.querySelector('#saluta');
+                    let title = document.querySelector('#hey');
+                    nome = document.querySelector('#nome');
+
+                    function saluta(name = "Sandro"){                               //prendo un parametro per la funzione ed anche un valore default
+                        title.innerHTML = `Ciao ${name}`;                           //uso il parametro che leggo con i backtick cosi da non fare concat
+                    };
+
+                    button.addEventListener('click', ()=>{                          //arrow function callback
+                        saluta(nome.value);                                         //passo il parametro preso in input alla funzione
+                    });
+
+                    button=document.querySelector('#cubo');
+                    title=document.querySelector('#result');
+                    let numero= document.querySelector('#numero');
+
+                    function cubo(number){
+                        let result=number*number*number;
+                        return result;                                              //ritorno alla funzione il valore di result
+                    }
+
+                    button.addEventListener('click', ()=>{                        
+                        title.innerHTML=cubo(numero.value);                         //l'assegnazione di una funzione ha effetto solo se esiste un return
+                    })
 
                 </script>
             </div>
