@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eventi</title>
+    <title>JSON</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </head>
 <body>
     <figure class="container">
         <blockquote class="blockquote">
-            <h3>Tutorial sugli Eventi</h3>
+            <h3>Tutorial sui JSON</h3>
         </blockquote>
         <figcaption class="blockquote-footer">
             Analizza il codice per capire meglio gli esempi
@@ -29,10 +29,10 @@
                             <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'array.html'">Array</button>
                             <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'condizioni.html'">Condizioni e LOOP</button>
                             <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'funzioni.html'">Funzioni</button>
-                            <button class="btn btn-outline-dark active" type="button" onclick="document.location.href = 'eventi.html'">Eventi</button>
+                            <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'eventi.html'">Eventi</button>
                             <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'oggetti.html'">Oggetti</button>
                             <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'classi.html'">Classi ed Ereditarietà</button>
-                            <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'json.html'">JSON</button>
+                            <button class="btn btn-outline-dark active" type="button" onclick="document.location.href = 'json.html'">JSON</button>
                             <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'sync&async.html'">Sync & Async</button>
                         </form>
                     </div>
@@ -42,50 +42,24 @@
         <hr>
         <div class="row">
             <div class="col">
-                <form id="form">
-                    <div class="form-group col-4">
-                        <label for="fname" class="form-label">Nome: </label>
-                        <input type="text" id="fname" class="form-control">
-                    </div>
-                    <div class="form-group col-4">
-                        <label for="lname" class="form-label">Cognome: </label>
-                        <input type="text" id="lname" class="form-control" onfocus="controlla();">                  <!--sconsigliato-->
-                    </div>
-                    <br>
-                    <div class="form-group col-4">
-                        <input type="submit" id="submit" class="btn btn-primary">
-                    </div>
-                </form>
-                <br>
-                <p></p>
+                <script>                                        
 
-                <script>
-                    const form = document.getElementById('form');
-                    const nome = document.getElementById('fname');
-                    const cognome = document.getElementById('lname');
-                    const paragrafo = document.querySelector('p');
-
-                    form.onsubmit = function(e) {
-                        if (nome.value === '' || cognome.value === '') {
-                            e.preventDefault();
-                            // e.stopPropagation();                                //bubbling and capturing    
-                            paragrafo.textContent = 'You need to fill in both names!';                            
-                        }
+                    //i JSON hanno solo proprietà e non metodi chiaramente, si usano solo doppi apici e sono key : value
+                    //i JSON possono contenere tutti i tipi di dati
+                                        
+                    let requestURL = 'classe.json';                                   //sintassi classica, senza fetch
+                    let request = new XMLHttpRequest();
+                    request.open('GET', requestURL);                                    //prendiamo con metodo GET e lo apriamo
+                    request.responseType = 'json';                                      //settiamo il tipo di risposta
+                    request.send();                                                     //inviamo la richiesta
+                    
+                    request.onload = function () {                                      //nell'onload della richiesta apriamo una funzione
+                        const classe = request.response;                                //che crea una classe uguale alla risposta della richiesta
+                        console.log(classe);
+                        console.log(classe.insegnanti[1].cognome);
                     }
 
-                    // nome.onfocus = function() {
-                    //     console.log("sono in focus");
-                    // }
-
-                    function controlla(){
-                        paragrafo.textContent = ("sono in focus anche io");
-                    }
-
-                    nome.addEventListener('focus', (e) =>{
-                        paragrafo.textContent =("sono in focus");
-                        console.log(e);
-                    })
-
+                    document.write('Controllare la console per il dump del JSON <br>');                    
 
                 </script>                    
             </div>
