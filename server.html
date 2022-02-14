@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eventi</title>
+    <title>Timeout</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </head>
 <body>
     <figure class="container">
         <blockquote class="blockquote">
-            <h3>Tutorial sugli Eventi</h3>
+            <h3>Tutorial sul passaggio dati AJAX</h3>
         </blockquote>
         <figcaption class="blockquote-footer">
             Analizza il codice per capire meglio gli esempi
@@ -29,7 +29,7 @@
                             <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'array.html'">Array</button>
                             <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'condizioni.html'">Condizioni e LOOP</button>
                             <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'funzioni.html'">Funzioni</button>
-                            <button class="btn btn-outline-dark active" type="button" onclick="document.location.href = 'eventi.html'">Eventi</button>
+                            <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'eventi.html'">Eventi</button>
                             <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'oggetti.html'">Oggetti</button>
                             <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'classi.html'">Classi ed Ereditarietà</button>
                             <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'json.html'">JSON</button>
@@ -37,8 +37,8 @@
                             <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'timeout.html'">Timeout</button>
                             <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'promise.html'">Promise</button>
                             <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'async&await.html'">Async & Await</button>
-                            <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'dome.html'">Dome</button>   
-                            <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'server.html'">Server</button>                                         
+                            <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'dome.html'">Dome</button>
+                            <button class="btn btn-outline-dark active" type="button" onclick="document.location.href = 'server.html'">Server</button>                            
                         </form>
                     </div>
                 </nav>
@@ -47,54 +47,38 @@
         <hr>
         <div class="row">
             <div class="col">
-                <form id="form">
-                    <div class="form-group col-4">
-                        <label for="fname" class="form-label">Nome: </label>
-                        <input type="text" id="fname" class="form-control">
-                    </div>
-                    <div class="form-group col-4">
-                        <label for="lname" class="form-label">Cognome: </label>
-                        <input type="text" id="lname" class="form-control" onfocus="controlla();">                  <!--sconsigliato-->
-                    </div>
-                    <br>
-                    <div class="form-group col-4">
-                        <input type="submit" id="submit" class="btn btn-primary">
-                    </div>
-                </form>
-                <br>
-                <p></p>
-
+                
                 <script>
-                    const form = document.getElementById('form');
-                    const nome = document.getElementById('fname');
-                    const cognome = document.getElementById('lname');
-                    const paragrafo = document.querySelector('p');
+                    document.write('Info nella console');
+                    
+                    let classeXML;                    
+                    let classeFetch;
+                    let url = './classe.json';
 
-                    form.onsubmit = function(e) {
-                        if (nome.value === '' || cognome.value === '') {
-                            e.preventDefault();
-                            // e.stopPropagation();                                //bubbling and capturing    
-                            paragrafo.textContent = 'You need to fill in both names!';                            
-                        }
+                    //metodo xml
+
+                    let request = new XMLHttpRequest();
+                    request.open('GET', url);
+                    request.responseType = 'json';
+
+                    request.onload = function(){
+                        classeXML = request.response;                    
+                        console.log('XMLHttpRequest: ', classeXML);
                     }
 
-                    // nome.onfocus = function() {
-                    //     console.log("sono in focus");
-                    // }
+                    request.send();
 
-                    function controlla(){
-                        paragrafo.textContent = ("sono in focus anche io");
-                    }
+                    //metodo fetch
 
-                    nome.addEventListener('focus', (e) =>{
-                        paragrafo.textContent =("sono in focus");
-                        console.log(e);
-                    })
+                    fetch(url)
+                        .then(response => response.json())
+                        .then(json => {
+                            classeFetch = json;
+                            console.log('fetch: ',classeFetch);
+                        });
 
+                </script>
 
-                </script>                    
             </div>
         </div>
     </div>
-</body>
-</html>

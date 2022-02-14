@@ -4,24 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Funzioni</title>
+    <title>Timeout</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
     <style>
-        button{
-            padding: 20px;
-            background-color: rgb(34, 34, 34);
-            color: white;
-            border: 5px solid rgb(12,12,12);
-            border-radius: 10px;
-            cursor: pointer;
+        div.prova{
+            margin: 10px;
+            padding: 10px;
+            background-color: rgb(226,226,226);
         }
+
+        .modificaStili{
+            color: red;
+            background-color: green;
+            text-align: center;
+            padding: 10px;
+        }
+
     </style>
+    
 </head>
 <body>
     <figure class="container">
         <blockquote class="blockquote">
-            <h3>Tutorial sulle Funzioni</h3>
+            <h3>Tutorial sulla Manipolazione DOM</h3>
         </blockquote>
         <figcaption class="blockquote-footer">
             Analizza il codice per capire meglio gli esempi
@@ -38,7 +45,7 @@
                             <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'stringhe.html'">Stringhe</button>
                             <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'array.html'">Array</button>
                             <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'condizioni.html'">Condizioni e LOOP</button>
-                            <button class="btn btn-outline-dark active" type="button" onclick="document.location.href = 'funzioni.html'">Funzioni</button>
+                            <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'funzioni.html'">Funzioni</button>
                             <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'eventi.html'">Eventi</button>
                             <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'oggetti.html'">Oggetti</button>
                             <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'classi.html'">Classi ed Ereditarietà</button>
@@ -47,7 +54,7 @@
                             <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'timeout.html'">Timeout</button>
                             <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'promise.html'">Promise</button>
                             <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'async&await.html'">Async & Await</button>
-                            <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'dome.html'">Dome</button>
+                            <button class="btn btn-outline-dark active" type="button" onclick="document.location.href = 'dome.html'">Dome</button>
                             <button class="btn btn-outline-dark" type="button" onclick="document.location.href = 'server.html'">Server</button>                            
                         </form>
                     </div>
@@ -57,64 +64,54 @@
         <hr>
         <div class="row">
             <div class="col">
-                <button id="hello">Hello</button>
-                <br>
-                <input type="text" id="nome" name="nome" placeholder="Nome">
-                <button id="saluta">Saluta</button>
-                <h3 id="hey">Nessun saluto</h3>
-                <input type="text" id="numero" name="numero" placeholder="Numero">
-                <button id="cubo">Calcola il cubo</button>
-                <h4 id="result"></h4>
+                <button id="bottone" class="prova">Bottone</button>
+                <div class="prova"></div>
+                <span class="prova"></span>
                 <script>
 
-                    let nome = 'Luca';                                              //variabile globale perchè sta fuori da una funzione
-                    const myButton = document.querySelector('#hello');
+                    //prendere elementi
+                    let x = document.getElementById('bottone');                              //restituisce solo un elemento dando per scontato che sia univoco
 
-                    myButton.onclick = function() {                                 //funzione anonima solitamente si usa nelle callback
-                        alert('Hello!');
-                    };
+                    let y = document.querySelector('button');                               //restituisce un elemento per tag
+                    let z = document.querySelector('#bottone');                             //restituisce un elemento per id
+                    let k = document.querySelector('.prova');                               //restituisce un elemento per classe
 
-                    function ciao() {
-                        document.write('Ciao!<br>');
-                    };
+                    let w = document.querySelectorAll('.prova');                            //restituisce tutti gli elementi di un determinato selettore
+                    console.log(w);                    
 
-                    document.write('<br>Invoco una funzione che saluta <br>');
-                    ciao();
+                    let j = document.getElementsByClassName('prova');                       //restituisce tutti gli elementi data una determinata classe
+                    console.log(j);
 
-                    document.write('Dichiaro una funzione con un parametro e la richiamo <br>');
-                    function hello(name) {
-                        document.write('Hey '+name+'<br>');
-                    };
-                    
-                    hello('Sandro');
-                    
-                    let button = document.querySelector('#saluta');
-                    let title = document.querySelector('#hey');
-                    nome = document.querySelector('#nome');
+                    //creare nuovi nodi
+                    const div = document.querySelector('div');
+                    const paragrafo = document.createElement('p');
+                    paragrafo.textContent = 'Elemento creato dinamicamente';
+                    div.appendChild(paragrafo);
 
-                    function saluta(name = "Sandro"){                               //prendo un parametro per la funzione ed anche un valore default
-                        title.innerHTML = `Ciao ${name}`;                           //uso il parametro che leggo con i backtick cosi da non fare concat
-                    };
+                    const extraTesto = document.createTextNode(' Altro testo');
+                    paragrafo.appendChild(extraTesto);                    
 
-                    button.addEventListener('click', ()=>{                          //arrow function callback
-                        saluta(nome.value);                                         //passo il parametro preso in input alla funzione
-                    });
+                    //spostare e rimuovere nodi
+                    const nuovoParagrafo = document.createTextNode('Nuovo paragrafo nel body');
+                    document.body.appendChild(nuovoParagrafo);
+                    paragrafo.removeChild(extraTesto);
+                    //oppure extraTesto.remove();
 
-                    button=document.querySelector('#cubo');
-                    title=document.querySelector('#result');
-                    let numero= document.querySelector('#numero');
+                    //modificare gli stili
+                    // paragrafo.style.color = 'red';
+                    // paragrafo.style.backgroundColor = 'orange';
+                    // paragrafo.style.padding = '5px';
+                    // paragrafo.style.textAlign = 'center';
 
-                    function cubo(number){
-                        let result=number*number*number;
-                        return result;                                              //ritorno alla funzione il valore di result
-                    }
-
-                    button.addEventListener('click', ()=>{                        
-                        title.innerHTML=cubo(numero.value);                         //l'assegnazione di una funzione ha effetto solo se esiste un return
-                    })
+                    //Aggiungere attributi
+                    paragrafo.setAttribute('class','modificaStili');
+                    paragrafo.setAttribute('data-value','Ciao');
+                    console.log(paragrafo.getAttribute('data-value'));
 
                 </script>
+
             </div>
         </div>
+    </div>
 </body>
 </html>
